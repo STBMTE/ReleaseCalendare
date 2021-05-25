@@ -1,0 +1,87 @@
+﻿@namespace WebApplication1.Data
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@attribute [Authorize]
+
+<div>
+    @for (int i = 0; i < 6; i++)
+    {
+        <div class="week">
+            @for (int j = 0; j < 7; j++)
+            {
+
+                if ((dat[i * 7 + j].FullDate) == DateTime.Today.ToString("dd") + "." + Convert.ToInt32(DateTime.Today.ToString("MM")) + "." + DateTime.Today.ToString("yyyy"))
+                {
+                    int it = i * 7 + j;
+                    <button class="block__calendar__ThisDate" @onclick="() => clone(it)">
+                        <text style="margin:auto;">
+                            @dat[i * 7 + j].Day
+                        </text>
+                    </button>
+                }
+                if (j < 5 && !((dat[i * 7 + j].FullDate) == DateTime.Today.ToString("dd") + "." + Convert.ToInt32(DateTime.Today.ToString("MM")) + "." + DateTime.Today.ToString("yyyy")))
+                {
+                    int it = i * 7 + j;
+                    <button class="block__calendar" @onclick="() => clone(it)">
+                        <text style="margin:auto;">
+                            @dat[i * 7 + j].Day
+                        </text>
+                    </button>
+                }
+
+                if (j >= 5 && !((dat[i * 7 + j].FullDate) == DateTime.Today.ToString("dd") + "." + Convert.ToInt32(DateTime.Today.ToString("MM")) + "." + DateTime.Today.ToString("yyyy")))
+                {
+                    int it = i * 7 + j;
+                    <button class="block__calendar__weeknd" @onclick="() => clone(it)">
+                        @dat[i * 7 + j].Day
+                    </button>
+
+                }
+            }
+        </div>
+    }
+</div>
+@if (count)
+{
+    <AuthorizeView Policy="User">
+        <Authorized>
+            <div>
+                @FullDate.FullDate
+                <input type="text" @bind="@Note">
+                <p>@Note</p>
+                <button @onclick="() => CreatingANote(FullDate, Note, context.User.Identity.Name)">BUTTON</button>
+            </div>
+        </Authorized>
+        <NotAuthorized>
+
+        </NotAuthorized>
+    </AuthorizeView>
+}
+@code{
+    [Parameter] public Date[] dat { get; set; }
+    [Parameter] public EventCallback Notes { get; set; }
+    [Parameter] public Date FullDate { get; set; }
+    [Parameter] public string Note { get; set; }
+
+    [Parameter]
+    public bool count { get; set; } = false;
+    public void clone(int dt)
+    {
+        count = true;
+        try
+        {
+            FullDate = dat[dt];
+        }
+        catch
+        {
+            Console.WriteLine(dt);
+        }
+    }
+    public void CreatingANote(Date Dat, string Note, object st)
+    {
+        Notes notes = new Notes();
+        notes.WriteDictionary(st.ToString(), Note, Dat);
+    }
+}

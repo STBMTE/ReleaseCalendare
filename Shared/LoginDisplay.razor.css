@@ -1,0 +1,21 @@
+﻿.navbar__menu-content li{
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.navbar__menu-content a{
+    color: black;
+}
+
+.button{
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    margin-bottom: 20px;
+}
+.elem_svbut{
+    display: inline;
+}

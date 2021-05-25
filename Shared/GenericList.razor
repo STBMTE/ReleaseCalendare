@@ -1,0 +1,65 @@
+﻿@using WebApplication1.Data
+@typeparam TCalendare
+
+@if (ListOfCalendares == null)
+{
+    @if (Calendare != null)
+    {
+        @Calendare
+    }
+    else
+    {
+
+    }
+}
+else if (ListOfCalendares.Count == 0)
+{
+    if (Calendare != null)
+    {
+        @CalendareWeekend
+    }
+
+    else
+    {
+    }
+}
+else
+{
+
+    foreach (var item in ListOfCalendares)
+    {
+        count++;
+    }
+    data = new TCalendare[count];
+    count = 0;
+    foreach (var item in ListOfCalendares)
+    {
+        data[count] = item;
+        count++;
+    }
+    @CalendareTemplate(data)
+}
+
+
+@code {
+    [Parameter] public RenderFragment Calendare { get; set; }
+    [Parameter] public RenderFragment CalendareWeekend { get; set; }
+    public int count = 0;
+
+    [Parameter] public TCalendare[] data { get; set; }
+
+    [Parameter] public RenderFragment<TCalendare[]> CalendareTemplate { get; set; }
+    [Parameter] public List<TCalendare> ListOfCalendares { get; set; }
+
+    void RefreshListDaysR(Calendarec list)
+    {
+        Pages.CalendareCode.leftArrow();
+        @*Calendarec.list;*@
+    }
+    void RefreshListDaysL(Calendarec list)
+    {
+        Pages.CalendareCode.rightArrow();
+        @*Calendarec.list;*@
+        Calendarec.Calendare(Pages.CalendareCode.day, Pages.CalendareCode.mounth - 1, Pages.CalendareCode.years);
+    }
+}

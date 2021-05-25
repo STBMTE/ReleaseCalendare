@@ -1,0 +1,68 @@
+﻿@*<div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">WebApplication1</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>*@
+
+@*<div>
+        <ul class="nav flex-column">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="fetchdata">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                </NavLink>
+            </li>
+        </ul>
+    </div>*@
+
+<div class="header">
+    <div class="topnav">
+        <div class="elem">
+            <NavLink href="">
+                <span class="nav-link text-dark" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="elem">
+            <NavLink href="#">
+                <span class="nav-link text-dark" aria-hidden="true"></span> Праздники
+            </NavLink>
+        </div>
+        <div class="elem">
+            <NavLink href="#">
+                <span class="nav-link text-dark" aria-hidden="true"></span> Напоминания
+            </NavLink>
+        </div>
+        <div class="elem">
+            <NavLink href="#">
+                <span class="nav-link text-dark" aria-hidden="true"></span> Задачи
+            </NavLink>
+        </div>
+    </div>
+    <div class="darkicon">
+        <a href="#"><img src="../halfmoon_102699.svg" alt=""></a>
+    </div>
+    <div class="logo">
+        <button @onclick="counter" style="background:none;"><img src="../user_icon_179525.svg" alt=""></button>
+    </div>
+</div>
+@if(count % 2 != 0){
+    <NavbarMenuRight/>
+}
+
+@code{
+    [Parameter] public int count { get; set; }
+    public void counter()
+    {
+        count++;
+    }
+}

@@ -1,0 +1,107 @@
+﻿@using WebApplication1.Data
+
+<div>
+    <div class="header__calendar">
+        <div class="left__triagle">
+            <button class="btn btn-default" @onclick="Ls">
+                <img src="../lefttriangle_83730.svg" width="20px" height="20px" />
+            </button>
+        </div>
+
+        <div class="month">@Data.Calendarec.vmounth()</div>
+
+        <div class="right__triagle">
+            <button class="btn btn-default" @onclick="Rs">
+                <img src="../righttriagle.svg" width="20px" height="20px" />
+            </button>
+        </div>
+    </div>
+</div>
+<GenericList ListOfCalendares="list">
+    <CalendareTemplate Context="date">
+        <div class="wordsofweek">
+            <div class="wordsofweek__content">
+                <div class="word1">
+                    Mon
+                </div>
+                <div class="word2">
+                    Tue
+                </div>
+                <div class="word3">
+                    Wed
+                </div>
+                <div class="word4">
+                    Thu
+                </div>
+                <div class="word5">
+                    Fri
+                </div>
+                <div class="word6">
+                    Sat
+                </div>
+                <div class="word7">
+                    Sun
+                </div>
+            </div>
+        </div>
+        <IndividualDataVisiable dat="date"></IndividualDataVisiable>
+    </CalendareTemplate>
+</GenericList>
+
+@functions {
+
+    public static void leftArrow()
+    {
+        if (mounth <= 1)
+        {
+            years--;
+            mounth = 12;
+
+        }
+        else
+        {
+            mounth--;
+        }
+    }
+
+    public static void rightArrow()
+    {
+        if (mounth >= 12)
+        {
+            years++;
+            mounth = 1;
+        }
+        else
+        {
+            mounth++;
+        }
+    }
+    public static int day { get; set; } = Convert.ToInt32(DateTime.Today.ToString("dd"));
+    public static int mounth { get; set; } = Convert.ToInt32(DateTime.Today.ToString("MM"));
+    public static int years { get; set; } = Convert.ToInt32(DateTime.Today.ToString("yyyy"));
+    public void Ls()
+    {
+        leftArrow();
+        list = Calendarec.Calendare(day, mounth, years);
+        RefreshListDaysL.InvokeAsync(list);
+    }
+
+    
+
+    public void Rs()
+    {
+        rightArrow();
+        list = Calendarec.Calendare(day, mounth, years);
+        RefreshListDaysR.InvokeAsync(list);
+    }
+
+    [Parameter] public static List<Date> list { get; set; }
+
+    [Parameter] public EventCallback<List<Date>> RefreshListDaysR { get; set; }
+    [Parameter] public EventCallback<List<Date>> RefreshListDaysL { get; set; }
+
+    protected override void OnInitialized()
+    {
+        list = Calendarec.Calendare(CalendareCode.day, CalendareCode.mounth, CalendareCode.years);
+    }
+}

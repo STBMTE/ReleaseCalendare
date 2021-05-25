@@ -1,0 +1,63 @@
+﻿.navbar__menu{
+    background-color: white;
+    width: 350px;
+    float: right;
+    height: 100%;
+
+}
+
+.navbar__menu-content{
+    text-align: center;
+}
+
+
+.line, .line-top, .line-bottom{
+    border: none;
+    background-color: #4A4B4D;
+    height: 0.5px;
+    margin-bottom: 30px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.line-top{
+    margin-top: 40px;
+}
+
+.line-bottom{
+    margin-top: 40px;
+}
+
+.list li{
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list a{
+    color: black;
+}
+
+.dark__mode{
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    text-transform: uppercase;
+}
+
+.follow__us{
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    text-transform: uppercase;
+}
+
+
+.list h1{
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom: 40px;
+}

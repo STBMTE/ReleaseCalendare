@@ -1,0 +1,31 @@
+﻿<AuthorizeView>
+    <Authorized>
+        <!-- <div class="navbar__menu-content">
+            <ul class="navbar__menu-content">
+                <li><a href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a></li>
+            </ul>
+            <div class="navbar__menu-content">
+                <form class="elem svbut" method="post" action="Identity/Account/LogOut">
+                    <button type="submit" class ="button">Log out</button>
+                </form>
+            </div>
+        </div> -->
+        <div class="navbar__menu">
+            <ul class="navbar__menu-content">
+                <li><a href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a></li>
+                <form class="elem_svbut" method="post" action="Identity/Account/LogOut">
+                    <button type="submit" class ="button">Log out</button>
+                </form>
+            </ul> 
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <div class="navbar__menu">
+            <ul class="navbar__menu-content">
+                <li><a href="Identity/Account/Register">Register</a></li>
+                <li><a href="Identity/Account/Login">Login</a></li> 
+            </ul> 
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+

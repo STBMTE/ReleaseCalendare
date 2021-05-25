@@ -1,0 +1,32 @@
+﻿@using WebApplication1.Data
+
+<div class="wordsofweek">
+    <div class="wordsofweek__content">
+        <div class="word1">
+            Mon
+        </div>
+        <div class="word2">
+            Tue
+        </div>
+        <div class="word3">
+            Wed
+        </div>
+        <div class="word4">
+            Thu
+        </div>
+        <div class="word5">
+            Fri
+        </div>
+        <div class="word6">
+            Sat
+        </div>
+        <div class="word7">
+            Sun
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public RenderFragment Calendare { get; set; }
+    [Parameter] public RenderFragment CalendareWeekend { get; set; }
+}
